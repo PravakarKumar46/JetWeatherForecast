@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JetWeatherForecast</string>
+    <string name="title_splash">"Find the Sun?"</string>
+</resources>
