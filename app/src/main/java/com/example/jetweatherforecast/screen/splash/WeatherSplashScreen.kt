@@ -22,8 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.jetweatherforecast.R
 import com.example.jetweatherforecast.navigation.WeatherScreen
@@ -36,6 +37,8 @@ fun WeatherSplashScreen(navController: NavController) {
     val scale = remember {
         Animatable(0f)
     }
+
+    val context = LocalContext.current
 
     LaunchedEffect(key1 = true, block = {
         scale.animateTo(
@@ -51,15 +54,15 @@ fun WeatherSplashScreen(navController: NavController) {
 
     Surface(
         modifier = Modifier
-            .padding(15.dp)
-            .size(330.dp)
+            .padding(dimensionResource(id = R.dimen.dp_15))
+            .size(dimensionResource(id = R.dimen.dp_330))
             .scale(scale.value),
         shape = CircleShape,
         color = Color.White,
-        border = BorderStroke(width = 2.dp, color = Color.LightGray)
+        border = BorderStroke(width = dimensionResource(id = R.dimen.dp_2), color = Color.LightGray)
     ) {
         Column(
-            modifier = Modifier.padding(1.dp),
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.dp_1)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -68,11 +71,11 @@ fun WeatherSplashScreen(navController: NavController) {
                 painter = painterResource(id = R.drawable.sun),
                 contentDescription = "sunny icon",
                 contentScale = ContentScale.Fit,
-                modifier = Modifier.size(95.dp)
+                modifier = Modifier.size(dimensionResource(id = R.dimen.dp_95))
             )
 
             Text(
-                text = "Find the Sun?",
+                text = context.getString(R.string.title_splash),
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color.LightGray
             )

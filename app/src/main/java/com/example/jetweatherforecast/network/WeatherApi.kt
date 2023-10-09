@@ -12,7 +12,7 @@ interface WeatherApi {
     @GET(value = "/data/2.5/weather")
     suspend fun getWeather(
         @Query(value = "q") query: String,
-        @Query(value = "units") units: String = "imperial",
+        @Query(value = "units") units: String = "metric",
         @Query(value = "appid") appid: String = Constants.API_KEY
     ): Weather
 
