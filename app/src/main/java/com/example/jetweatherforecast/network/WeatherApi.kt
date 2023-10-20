@@ -9,6 +9,10 @@ import javax.inject.Singleton
 @Singleton
 interface WeatherApi {
 
+    /**
+     *  weather api
+     *  BASE_URL = "https://api.openweathermap.org/"
+     */
     @GET(value = "/data/2.5/weather")
     suspend fun getWeather(
         @Query(value = "q") query: String,

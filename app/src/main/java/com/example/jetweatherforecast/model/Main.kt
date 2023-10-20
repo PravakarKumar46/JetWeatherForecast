@@ -1,10 +1,21 @@
 package com.example.jetweatherforecast.model
 
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Main(
-    val feels_like: Double,
+    @SerializedName("feels_like")
+    val feelsLike: Double,
+    @SerializedName("humidity")
     val humidity: Int,
+    @SerializedName("pressure")
     val pressure: Int,
+    @SerializedName("temp")
     val temp: Double,
-    val temp_max: Double,
-    val temp_min: Double
-)
+    @SerializedName("temp_max")
+    val tempMax: Double,
+    @SerializedName("temp_min")
+    val tempMin: Double
+): Parcelable

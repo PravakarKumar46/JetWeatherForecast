@@ -5,7 +5,9 @@ import com.example.jetweatherforecast.model.Weather
 import com.example.jetweatherforecast.network.WeatherApi
 import javax.inject.Inject
 
-class WeatherRepository @Inject constructor(private val api: WeatherApi) {
+class WeatherRepository @Inject constructor(
+    private val api: WeatherApi
+) {
 
     suspend fun getWeather(cityQuery: String): DataOrException<Weather, Boolean, Exception> {
 
