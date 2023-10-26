@@ -1,10 +1,8 @@
 package com.example.jetweatherforecast.screen.main
 
 import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -14,7 +12,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -25,20 +22,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
 import com.example.jetweatherforecast.R
 import com.example.jetweatherforecast.data.DataOrException
-import com.example.jetweatherforecast.model.Main
 import com.example.jetweatherforecast.model.Weather
 import com.example.jetweatherforecast.utils.formatDate
-import com.example.jetweatherforecast.utils.formatDateTime
 import com.example.jetweatherforecast.utils.formatDecimals
+import com.example.jetweatherforecast.widgets.HumidityWindPressureRow
+import com.example.jetweatherforecast.widgets.SunsetSunRiseRow
 import com.example.jetweatherforecast.widgets.WeatherAppBar
+import com.example.jetweatherforecast.widgets.WeatherDetails
+import com.example.jetweatherforecast.widgets.WeatherStateImage
 
 @Composable
 fun MainScreen(
@@ -133,96 +130,11 @@ fun MainContent(data: Weather) {
         HumidityWindPressureRow(weather = data.main)
         Divider()
         SunsetSunRiseRow(weather = data)
-    }
-}
-
-@Composable
-fun WeatherStateImage(imageUrl: String) {
-
-    Image(
-        painter = rememberImagePainter(imageUrl),
-        contentDescription = "image icon",
-        modifier = Modifier.size(dimensionResource(id = R.dimen.dp_88))
-    )
-
-}
-
-@Composable
-fun HumidityWindPressureRow(weather: Main) {
-
-    Row(modifier = Modifier
-        .padding(dimensionResource(id = R.dimen.dp_12))
-        .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-
-        Row(modifier = Modifier.padding(dimensionResource(id = R.dimen.dp_4))) {
-            Icon(painter = painterResource(id = R.drawable.humidity),
-                contentDescription = "humidity icon",
-                modifier = Modifier.size(dimensionResource(id = R.dimen.dp_20)))
-
-            Text(text = "${weather.humidity}%",
-                style = MaterialTheme.typography.titleMedium)
-
-        }
-        Row {
-            Icon(painter = painterResource(id = R.drawable.pressure),
-                contentDescription = "pressure icon",
-                modifier = Modifier.size(dimensionResource(id = R.dimen.dp_20)))
-
-            Text(text = "${weather.pressure}",
-                style = MaterialTheme.typography.titleMedium)
-        }
-        Row {
-            Icon(painter = painterResource(id = R.drawable.wind),
-                contentDescription = "wind icon",
-                modifier = Modifier.size(dimensionResource(id = R.dimen.dp_20)))
-
-            Text(text = "${weather.humidity} mph",//miles per hour
-                style = MaterialTheme.typography.titleMedium)
-        }
-    }
-
-}
-
-
-@Composable
-fun SunsetSunRiseRow(weather: Weather) {
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                top = dimensionResource(id = R.dimen.dp_15),
-                bottom = dimensionResource(id = R.dimen.dp_6)
-            ),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween) {
-
-        Row {
-            Image(
-                painter = painterResource(id = R.drawable.sunrise),
-                contentDescription = "Sunrise",
-                modifier = Modifier.size(dimensionResource(id = R.dimen.dp_30))
-            )
-            Text(
-                text = formatDateTime(weather.sys.sunrise),
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
-
-        Row {
-            Image(
-                painter = painterResource(id = R.drawable.sunset),
-                contentDescription = "Sunset",
-                modifier = Modifier.size(dimensionResource(id = R.dimen.dp_30))
-            )
-            Text(
-                text = formatDateTime(weather.sys.sunset),
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
-
+        Text(
+            text = "This week",
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold
+        )
+        WeatherDetails(data)
     }
 }
