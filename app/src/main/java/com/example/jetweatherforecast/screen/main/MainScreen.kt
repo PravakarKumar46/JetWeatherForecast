@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import com.example.jetweatherforecast.R
 import com.example.jetweatherforecast.data.DataOrException
 import com.example.jetweatherforecast.model.Weather
+import com.example.jetweatherforecast.navigation.WeatherScreen
 import com.example.jetweatherforecast.utils.formatDate
 import com.example.jetweatherforecast.utils.formatDecimals
 import com.example.jetweatherforecast.widgets.HumidityWindPressureRow
@@ -40,13 +41,14 @@ import com.example.jetweatherforecast.widgets.WeatherStateImage
 @Composable
 fun MainScreen(
     navController: NavController,
-    mainViewModel: MainViewModel = hiltViewModel()
+    mainViewModel: MainViewModel = hiltViewModel(),
+    city: String?
 ) {
 
     val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
-        value = mainViewModel.getWeatherData(city = "bangalore")
+        value = mainViewModel.getWeatherData(city = city.toString())
     }.value
 
     if (weatherData.loading == true) {
@@ -65,7 +67,10 @@ fun ManinScaffold(weather: Weather, navController: NavController) {
         WeatherAppBar(
             title = weather.name + " , ${weather.sys.country}",
             icon = Icons.Default.ArrowBack,
-            navController = navController, elevation = dimensionResource(id = R.dimen.dp_5)
+            navController = navController, elevation = dimensionResource(id = R.dimen.dp_5),
+            onAddActionClicked = {
+                navController.navigate(WeatherScreen.SearchScreen.name)
+            }
         ) {
             Log.d("button_clicked", "ManinScaffold: Button Clicked...")
         }

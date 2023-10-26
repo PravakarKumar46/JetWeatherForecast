@@ -204,7 +204,7 @@ fun WeatherDetailsRow(data: Weather) {
                 }
 
                 withStyle(style = SpanStyle(color = Color.LightGray)) {
-                    append(formatDecimals(data.main.tempMin))
+                    append(formatDecimals(data.main.tempMin) + "°")
                 }
             })
         }

@@ -9,14 +9,18 @@
     <dimen name="dp_4">4.dp</dimen>
     <dimen name="dp_5">5.dp</dimen>
     <dimen name="dp_6">6.dp</dimen>
+    <dimen name="dp_10">10.dp</dimen>
     <dimen name="dp_12">12.dp</dimen>
     <dimen name="dp_14">14.dp</dimen>
     <dimen name="dp_15">15.dp</dimen>
+    <dimen name="dp_16">16.dp</dimen>
     <dimen name="dp_20">20.dp</dimen>
     <dimen name="dp_25">25.dp</dimen>
     <dimen name="dp_30">30.dp</dimen>
+    <dimen name="dp_45">45.dp</dimen>
     <dimen name="dp_88">88.dp</dimen>
     <dimen name="dp_95">95.dp</dimen>
+    <dimen name="dp_140">140.dp</dimen>
     <dimen name="dp_200">200.dp</dimen>
     <dimen name="dp_330">330.dp</dimen>
 
