@@ -1,10 +1,15 @@
 package com.example.jetweatherforecast.di
 
+import android.content.Context
+import androidx.room.Room
+import com.example.jetweatherforecast.data.WeatherDao
+import com.example.jetweatherforecast.data.WeatherDataBase
 import com.example.jetweatherforecast.network.WeatherApi
 import com.example.jetweatherforecast.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,5 +29,19 @@ class AppModule {
             .build()
             .create(WeatherApi::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideWeatherDao(dataBase: WeatherDataBase): WeatherDao = dataBase.weatherDao()
+
+    @Singleton
+    @Provides
+    fun provideAppDataBase(@ApplicationContext context: Context): WeatherDataBase
+    = Room.databaseBuilder(
+            context,
+            WeatherDataBase::class.java,
+            "weather_database")
+            .fallbackToDestructiveMigration()
+            .build()
 
 }

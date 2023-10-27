@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
@@ -42,6 +41,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.jetweatherforecast.R
+import com.example.jetweatherforecast.navigation.WeatherScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -103,7 +103,6 @@ fun WeatherAppBar(
         )
     }
 
-
 }
 
 @Composable
@@ -115,7 +114,7 @@ fun ShowSettingDropDownMenu(
         mutableStateOf(true)
     }
 
-    val items = listOf("About", "Favourites", "Setting")
+    val items = listOf("About", "Favourite", "Setting")
 
     Column(
         modifier = Modifier
@@ -139,7 +138,13 @@ fun ShowSettingDropDownMenu(
                 DropdownMenuItem(
                     text = {
                         Text(text = text, modifier = Modifier.clickable {
-
+                            navController.navigate(
+                                when (text) {
+                                    "About" -> WeatherScreen.AboutScreen.name
+                                    "Favourite" -> WeatherScreen.FavoriteScreen.name
+                                    else -> WeatherScreen.SettingScreen.name
+                                }
+                            )
                         }, fontWeight = FontWeight.W300)
                     },
                     onClick = {
@@ -150,7 +155,7 @@ fun ShowSettingDropDownMenu(
                         Icon(
                             imageVector = when (text) {
                                 "About" -> Icons.Default.Info
-                                "Fovourites" -> Icons.Default.FavoriteBorder
+                                "Favourite" -> Icons.Default.FavoriteBorder
                                 else -> Icons.Default.Settings
 
                             }, contentDescription = null,
@@ -158,7 +163,6 @@ fun ShowSettingDropDownMenu(
                         )
                     })
             }
-
 
         }
 
