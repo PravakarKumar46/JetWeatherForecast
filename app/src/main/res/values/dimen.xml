@@ -17,7 +17,9 @@
     <dimen name="dp_20">20.dp</dimen>
     <dimen name="dp_25">25.dp</dimen>
     <dimen name="dp_30">30.dp</dimen>
+    <dimen name="dp_34">34.dp</dimen>
     <dimen name="dp_45">45.dp</dimen>
+    <dimen name="dp_50">50.dp</dimen>
     <dimen name="dp_88">88.dp</dimen>
     <dimen name="dp_95">95.dp</dimen>
     <dimen name="dp_140">140.dp</dimen>
@@ -26,5 +28,6 @@
 
     <!--    size in sp-->
     <dimen name="sp_15">15.sp</dimen>
+    <dimen name="sp_17">17.sp</dimen>
 
 </resources>

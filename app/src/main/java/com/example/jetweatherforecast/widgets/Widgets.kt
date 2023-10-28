@@ -29,7 +29,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import coil.compose.rememberImagePainter
 import com.example.jetweatherforecast.R
-import com.example.jetweatherforecast.model.Main
 import com.example.jetweatherforecast.model.Weather
 import com.example.jetweatherforecast.utils.formatDate
 import com.example.jetweatherforecast.utils.formatDateTime
@@ -48,7 +47,7 @@ fun WeatherStateImage(imageUrl: String) {
 }
 
 @Composable
-fun HumidityWindPressureRow(weather: Main) {
+fun HumidityWindPressureRow(weather: Weather, isImperial: Boolean) {
 
     Row(
         modifier = Modifier
@@ -66,7 +65,7 @@ fun HumidityWindPressureRow(weather: Main) {
             )
 
             Text(
-                text = "${weather.humidity}%",
+                text = "${weather.main.humidity}%",
                 style = MaterialTheme.typography.titleMedium
             )
 
@@ -79,7 +78,7 @@ fun HumidityWindPressureRow(weather: Main) {
             )
 
             Text(
-                text = "${weather.pressure}",
+                text = "${weather.main.pressure}",
                 style = MaterialTheme.typography.titleMedium
             )
         }
@@ -91,7 +90,7 @@ fun HumidityWindPressureRow(weather: Main) {
             )
 
             Text(
-                text = "${weather.humidity} mph",//miles per hour
+                text = "${formatDecimals(weather.wind.speed)} " + if (isImperial) "mph" else "m/s",//miles per hour::meter/second
                 style = MaterialTheme.typography.titleMedium
             )
         }

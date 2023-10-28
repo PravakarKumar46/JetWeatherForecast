@@ -13,6 +13,7 @@ import com.example.jetweatherforecast.screen.main.MainScreen
 import com.example.jetweatherforecast.screen.main.MainViewModel
 import com.example.jetweatherforecast.screen.search.SearchScreen
 import com.example.jetweatherforecast.screen.setting.SettingScreen
+import com.example.jetweatherforecast.screen.setting.SettingsViewModel
 import com.example.jetweatherforecast.screen.splash.WeatherSplashScreen
 
 @Composable
